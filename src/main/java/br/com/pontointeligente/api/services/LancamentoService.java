@@ -7,20 +7,45 @@ package br.com.pontointeligente.api.services;
 
 import br.com.pontointeligente.api.entities.Lancamento;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 /**
  *
  * @author silvio
  */
 public interface LancamentoService {
-    
+
     /**
+     * Retorna um lançamento por ID.
      *
-     * 
      * @param id
-     * @return 
+     * @return Optional<Lancamento>
      */
-    Optional<Lancamento> buscarPorFuncionarioId(Long id);
-    
-    
+    Optional<Lancamento> buscarPorId(Long id);
+
+    /**
+     * Busca os lançamentos de um funcionário e retorna um objeto de paginação.
+     *
+     * @param funcionarioId
+     * @param pageRequest
+     * @return
+     */
+    Page<Lancamento> buscarPorFuncionarioId(Long funcionarioId, PageRequest pageRequest);
+
+    /**
+     * Persistir um lançamento no banco de dados.
+     *
+     * @param lancamento
+     * @return
+     */
+    Lancamento persistir(Lancamento lancamento);
+
+    /**
+     * Remover lançamento pelo id
+     *
+     * @param id
+     */
+    void remover(Long id);
+
 }

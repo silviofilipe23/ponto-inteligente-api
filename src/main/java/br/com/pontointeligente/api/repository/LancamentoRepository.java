@@ -7,6 +7,7 @@ package br.com.pontointeligente.api.repository;
 
 import br.com.pontointeligente.api.entities.Lancamento;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import org.springframework.data.domain.Page;
@@ -32,5 +33,7 @@ public interface LancamentoRepository extends JpaRepository<Lancamento, Long>{
     
     Page<Lancamento> findByFuncionarioId(@Param("funcionarioId") Long funcionarioId, Pageable pageable);
     
+    @Override
+    Optional<Lancamento> findById(Long id);
     
 }
