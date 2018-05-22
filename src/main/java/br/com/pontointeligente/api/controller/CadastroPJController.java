@@ -12,8 +12,6 @@ import br.com.pontointeligente.api.enums.PerfilEnum;
 import br.com.pontointeligente.api.response.Response;
 import br.com.pontointeligente.api.services.EmpresaService;
 import br.com.pontointeligente.api.services.FuncionarioService;
-import br.com.pontointeligente.api.services.impl.EmpresaServiceImpl;
-import br.com.pontointeligente.api.services.impl.FuncionarioServiceImpl;
 import br.com.pontointeligente.api.utils.PasswordUtils;
 import java.security.NoSuchAlgorithmException;
 import javax.validation.Valid;
@@ -24,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/cadastrar-pj")
+@CrossOrigin(origins = "*")
 public class CadastroPJController {
 
     private static final Logger logger = LoggerFactory.getLogger(CadastroPJController.class);
@@ -45,17 +43,10 @@ public class CadastroPJController {
 
     @Autowired
     FuncionarioService funcionarioService;
-    
-    
-    @GetMapping("/test")
-    public ResponseEntity<String> getFuncionario(){
-        
-        String test = "aksodpkfopaskdopfkopasdkopfkopasdkfopkadsopkf";
-        
-        return ResponseEntity.ok(test);
+
+    public CadastroPJController() {
     }
-    
-    
+
     @PostMapping
     public ResponseEntity<Response<CadastroPJDto>> cadastrar(@Valid @RequestBody CadastroPJDto cadastroPJDto,
             BindingResult result) throws NoSuchAlgorithmException {
